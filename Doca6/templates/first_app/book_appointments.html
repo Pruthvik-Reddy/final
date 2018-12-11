@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Your Appointment</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'first_app/css/bootstrap.css' %}">
+    <link rel="styleaheet" href="{% static 'first_app/css/style.css' %}">
+</head>
+<body class="class1" style="background-color:#e6f2ff;">
+
+    <h1>Book Your Appointment</h1>
+    {% if messages %}
+<ul class="messages" style=" background: #d0eae2 !important;
+  padding: 10px !important;
+  border-radius: 0 !important;
+  position: relative;
+  display: inline-block !important;
+  box-shadow: 1px 1px 1px #aaaaaa;
+  margin-top: 10px;">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+    <form class="form-horizontal" method="POST" action="{%  url 'showapp' %}" >
+        <div class="form-group">
+    <label >Choose Location:</label>
+
+        {% csrf_token %}
+        <select name="loc" id="loc" >
+            {% for loc in locations %}
+            <option>{{ loc }}</option>
+            {% endfor %}
+        </select>
+</div>
+
+        <br>
+        <div class="form-group">
+    <label>Choose Category: </label>
+
+
+
+
+        <select name="cat" id="cat" >
+             {% for cat in categories %}
+            <option>{{ cat }}</option>
+            {% endfor %}
+        </select>
+         </div>
+        <br>
+        <div class="form-group">
+    <label>Sort By: </label>
+
+        <select name="sort" id="sort">
+            <option>fees</option>
+            <option>rating</option>
+        </select>
+    <br>
+    </div>
+    <input type="submit" value="submit">
+
+
+    </form>
+
+
+</body>
+</html>
